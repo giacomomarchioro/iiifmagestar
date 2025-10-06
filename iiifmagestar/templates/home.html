@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>IIIF Image Server 3.0</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            line-height: 1.6;
+        }
+
+        code {
+            background: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .example {
+            background: #f9f9f9;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 4px solid #007acc;
+        }
+
+        .new-feature {
+            background: #e8f5e8;
+            border-left-color: #28a745;
+        }
+
+        h1 {
+            color: #007acc;
+        }
+
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>IIIF Image API 3.0 Server</h1>
+    <p>This server implements the <strong>IIIF Image API 3.0</strong> specification with enhanced features.</p>
+
+    <h2>API Endpoints</h2>
+    <div class="example">
+        <strong>Image Info (JSON-LD):</strong><br>
+        <code>GET /iiif/3/{identifier}/info.json</code>
+    </div>
+
+    <div class="example">
+        <strong>Image Request:</strong><br>
+        <code>GET /iiif/3/{identifier}/{region}/{size}/{rotation}/{quality}.{format}</code>
+    </div>
+
+    <h2>New Features in 3.0</h2>
+
+    <div class="example new-feature">
+        <strong>Square Region:</strong><br>
+        <code>/iiif/3/example/square/300,300/0/default.jpg</code><br>
+        <em>Automatically extracts the largest centered square from the image</em>
+    </div>
+
+    <div class="example new-feature">
+        <strong>Arbitrary Rotation:</strong><br>
+        <code>/iiif/3/example/full/full/23.5/default.jpg</code><br>
+        <em>Rotate by any angle, not just 90° increments</em>
+    </div>
+
+    <div class="example new-feature">
+        <strong>Best Fit Sizing:</strong><br>
+        <code>/iiif/3/example/full/!800,600/0/default.jpg</code><br>
+        <em>Fit within specified dimensions while preserving aspect ratio</em>
+    </div>
+
+    <div class="example new-feature">
+        <strong>Upscaling Allowed:</strong><br>
+        <code>/iiif/3/example/full/^1200,/0/default.jpg</code><br>
+        <em>Allow upscaling beyond original dimensions</em>
+    </div>
+
+    <h2>Standard Examples</h2>
+
+    <div class="example">
+        <strong>Full image as JPEG:</strong><br>
+        <code>/iiif/3/example/full/max/0/default.jpg</code>
+    </div>
+
+    <div class="example">
+        <strong>Crop region:</strong><br>
+        <code>/iiif/3/example/100,100,500,500/max/0/default.jpg</code>
+    </div>
+
+    <div class="example">
+        <strong>Percentage crop:</strong><br>
+        <code>/iiif/3/example/pct:10,10,80,80/max/0/default.jpg</code>
+    </div>
+
+    <div class="example">
+        <strong>Resize to 300px wide:</strong><br>
+        <code>/iiif/3/example/full/300,/0/default.jpg</code>
+    </div>
+
+    <div class="example">
+        <strong>Percentage resize:</strong><br>
+        <code>/iiif/3/example/full/pct:50/0/default.jpg</code>
+    </div>
+
+    <div class="example">
+        <strong>Rotate and mirror:</strong><br>
+        <code>/iiif/3/example/full/full/!90/default.jpg</code>
+    </div>
+
+    <div class="example">
+        <strong>Grayscale PNG:</strong><br>
+        <code>/iiif/3/example/full/max/0/gray.png</code>
+    </div>
+
+    <h2>Supported Formats</h2>
+    <p><strong>Standard:</strong> jpg, png, webp<br>
+        <strong>Extended:</strong> tif, tiff
+    </p>
+
+    <h2>Supported Quality Levels</h2>
+    <p><strong>default, color:</strong> Full color<br>
+        <strong>gray:</strong> Grayscale conversion<br>
+        <strong>bitonal:</strong> Black and white (1-bit)
+    </p>
+</body>
+
+</html>
